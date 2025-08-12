@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pushdown Automata - Theory of Computation</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="../index.html" style="color: white; text-decoration: none;">Learn Theory of Computation</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#chapters">Chapters</a></li>
+                    <li><a href="../index.html#learning-path">Learning Path</a></li>
+                    <li><a href="../index.html#visualizer">3D Visualizer</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="topic-content">
+        <section class="container">
+            <h1>Pushdown Automata</h1>
+            
+            <div class="content-layout">
+                <div class="content-panel">
+                    <div class="topic-section">
+                        <h2>Definition and Components</h2>
+                        <p>A Pushdown Automaton (PDA) is a finite automaton equipped with a stack-based memory. It recognizes context-free languages and is more powerful than finite automata but less powerful than Turing machines.</p>
+                        
+                        <h3>Formal Definition:</h3>
+                        <p>A PDA is represented as a 7-tuple (Q, Σ, Γ, δ, q₀, Z₀, F) where:</p>
+                        <ul>
+                            <li><strong>Q</strong>: A finite set of states</li>
+                            <li><strong>Σ</strong>: A finite set of input symbols</li>
+                            <li><strong>Γ</strong>: A finite set of stack symbols</li>
+                            <li><strong>δ</strong>: Transition function δ: Q × (Σ ∪ {ε}) × Γ → P(Q × Γ*)</li>
+                            <li><strong>q₀</strong>: Initial state (q₀ ∈ Q)</li>
+                            <li><strong>Z₀</strong>: Initial stack symbol (Z₀ ∈ Γ)</li>
+                            <li><strong>F</strong>: Set of accepting states (F ⊆ Q)</li>
+                        </ul>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Stack Operations</h2>
+                        <p>The stack is the key feature that gives PDAs their additional power:</p>
+                        <ul>
+                            <li><strong>Push</strong>: Add a symbol to the top of the stack</li>
+                            <li><strong>Pop</strong>: Remove the top symbol from the stack</li>
+                            <li><strong>Read</strong>: Examine the top symbol without removing it</li>
+                        </ul>
+                        
+                        <h3>Transition Notation:</h3>
+                        <p>A transition δ(q, a, X) = {(p, γ)} means:</p>
+                        <ul>
+                            <li>When in state q, reading input a, with X on top of stack</li>
+                            <li>Move to state p</li>
+                            <li>Replace X with string γ on the stack</li>
+                        </ul>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Comparison with FSA</h2>
+                        <table>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Finite Automata</th>
+                                <th>Pushdown Automata</th>
+                            </tr>
+                            <tr>
+                                <td>Memory</td>
+                                <td>Finite states only</td>
+                                <td>Finite states + unbounded stack</td>
+                            </tr>
+                            <tr>
+                                <td>Recognized Language</td>
+                                <td>Regular languages</td>
+                                <td>Context-free languages</td>
+                            </tr>
+                            <tr>
+                                <td>Power</td>
+                                <td>Less powerful</td>
+                                <td>More powerful</td>
+                            </tr>
+                            <tr>
+                                <td>Example Language</td>
+                                <td>a*b*</td>
+                                <td>a^n b^n</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Real-World Analogy: Undo/Redo in Text Editors</h2>
+                        <div class="analogy">
+                            <p>A text editor's undo/redo functionality works like a stack in a PDA:</p>
+                            <ul>
+                                <li><strong>Stack</strong>: Stores previous states of the document</li>
+                                <li><strong>Push</strong>: When you perform an action, it's pushed onto the undo stack</li>
+                                <li><strong>Pop</strong>: When you undo, the most recent action is popped from the stack</li>
+                                <li><strong>State Transitions</strong>: Each edit or undo changes the document state</li>
+                            </ul>
+                            <p>Just as a PDA uses its stack to remember information for later use, text editors use undo stacks to remember previous states.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Constructing PDAs and Solving Problems</h2>
+                        <ol>
+                            <li><strong>Identify the Language</strong>: Understand what strings need to be accepted</li>
+                            <li><strong>Determine Stack Usage</strong>: Decide what information to store on the stack</li>
+                            <li><strong>Design States</strong>: Create states to track progress through the input</li>
+                            <li><strong>Define Transitions</strong>: Specify how the automaton moves between states</li>
+                            <li><strong>Handle Non-determinism</strong>: Use ε-transitions where needed</li>
+                        </ol>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Example Problems</h2>
+                        <div class="problem">
+                            <h3>Problem 1: Design PDA</h3>
+                            <p>Design a PDA for the language L = {a^n b^n | n ≥ 0}</p>
+                            <div class="solution">
+                                <h4>Solution:</h4>
+                                <p>States: q₀ (start), q₁ (reading b's), q₂ (accept)</p>
+                                <p>Stack alphabet: {A, Z₀}</p>
+                                <p>Transitions:
+                                    <ul>
+                                        <li>δ(q₀, a, Z₀) = {(q₀, AZ₀)}</li>
+                                        <li>δ(q₀, a, A) = {(q₀, AA)}</li>
+                                        <li>δ(q₀, b, A) = {(q₁, ε)}</li>
+                                        <li>δ(q₁, b, A) = {(q₁, ε)}</li>
+                                        <li>δ(q₁, ε, Z₀) = {(q₂, Z₀)}</li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visualization-panel">
+                    <h3>3D PDA Visualization</h3>
+                    <div class="visualization-placeholder">
+                        <i class="fas fa-cube fa-3x"></i>
+                        <p>Interactive 3D visualization of stack operations</p>
+                        <p class="instructions">Click and drag to rotate | Scroll to zoom</p>
+                    </div>
+                    <div class="visualization-controls">
+                        <button class="control-btn"><i class="fas fa-play"></i> Animate Stack</button>
+                        <button class="control-btn"><i class="fas fa-expand"></i> Fullscreen</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Learn Theory of Computation. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

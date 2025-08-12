@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turing Machine - Theory of Computation</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="../index.html" style="color: white; text-decoration: none;">Learn Theory of Computation</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#chapters">Chapters</a></li>
+                    <li><a href="../index.html#learning-path">Learning Path</a></li>
+                    <li><a href="../index.html#visualizer">3D Visualizer</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="topic-content">
+        <section class="container">
+            <h1>Turing Machine</h1>
+            
+            <div class="content-layout">
+                <div class="content-panel">
+                    <div class="topic-section">
+                        <h2>Definition and Working Principles</h2>
+                        <p>A Turing Machine is a mathematical model of computation that defines an abstract machine manipulating symbols on a strip of tape according to a table of rules. It is the most powerful model of computation and can simulate any computer algorithm.</p>
+                        
+                        <h3>Formal Definition:</h3>
+                        <p>A Turing Machine is represented as a 7-tuple (Q, Σ, Γ, δ, q₀, B, F) where:</p>
+                        <ul>
+                            <li><strong>Q</strong>: A finite set of states</li>
+                            <li><strong>Σ</strong>: A finite set of input symbols (does not contain the blank symbol)</li>
+                            <li><strong>Γ</strong>: A finite set of tape symbols (Σ ⊆ Γ, includes blank symbol B)</li>
+                            <li><strong>δ</strong>: Transition function δ: Q × Γ → Q × Γ × {L, R}</li>
+                            <li><strong>q₀</strong>: Initial state (q₀ ∈ Q)</li>
+                            <li><strong>B</strong>: Blank symbol (B ∈ Γ - Σ)</li>
+                            <li><strong>F</strong>: Set of accepting states (F ⊆ Q)</li>
+                        </ul>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Turing Machine Components</h2>
+                        <ul>
+                            <li><strong>Tape</strong>: Infinite strip divided into cells, each containing a symbol</li>
+                            <li><strong>Head</strong>: Reads and writes symbols on the tape, moves left or right</li>
+                            <li><strong>State Register</strong>: Stores the current state of the machine</li>
+                            <li><strong>Transition Function</strong>: Determines actions based on current state and symbol</li>
+                        </ul>
+                        
+                        <h3>Operation:</h3>
+                        <p>At each step, the Turing machine:
+                            <ol>
+                                <li>Reads the symbol under the head</li>
+                                <li>Based on the current state and symbol, it:
+                                    <ul>
+                                        <li>Writes a symbol (or leaves it unchanged)</li>
+                                        <li>Moves the head one cell left or right</li>
+                                        <li>Changes to a new state</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </p>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Importance in Computational Theory</h2>
+                        <ul>
+                            <li><strong>Church-Turing Thesis</strong>: Any effectively calculable function can be computed by a Turing machine</li>
+                            <li><strong>Decidability</strong>: Determines which problems can be solved algorithmically</li>
+                            <li><strong>Complexity Theory</strong>: Basis for analyzing computational complexity</li>
+                            <li><strong>Universal Computation</strong>: A Universal Turing Machine can simulate any other Turing machine</li>
+                        </ul>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Real-World Analogy: Person Following Instructions</h2>
+                        <div class="analogy">
+                            <p>A person following a recipe to cook a dish is like a Turing machine:</p>
+                            <ul>
+                                <li><strong>Tape</strong>: The recipe steps written on paper</li>
+                                <li><strong>Head</strong>: The person's eyes reading the recipe</li>
+                                <li><strong>State</strong>: What step they are currently on</li>
+                                <li><strong>Actions</strong>: Reading, writing notes, moving to next step, changing ingredients</li>
+                            </ul>
+                            <p>Just as a person can theoretically follow an infinitely long recipe (given infinite time and resources), a Turing machine can process an infinitely long input tape.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Academic Problem-Solving Examples</h2>
+                        <ol>
+                            <li><strong>Design Process</strong>:
+                                <ul>
+                                    <li>Identify the problem to be solved</li>
+                                    <li>Determine required states and transitions</li>
+                                    <li>Plan tape usage and head movements</li>
+                                    <li>Specify acceptance conditions</li>
+                                </ul>
+                            </li>
+                            <li><strong>Simulation</strong>: Trace through machine execution on sample inputs</li>
+                            <li><strong>Variants</strong>: Understand multi-tape, non-deterministic, and other variants</li>
+                        </ol>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Example Problems</h2>
+                        <div class="problem">
+                            <h3>Problem 1: Design Turing Machine</h3>
+                            <p>Design a Turing machine that recognizes the language L = {0^n 1^n | n ≥ 1}</p>
+                            <div class="solution">
+                                <h4>Solution:</h4>
+                                <p>States: q₀ (start), q₁ (find 0), q₂ (find 1), q₃ (return), q₄ (check), q₅ (accept), q₆ (reject)</p>
+                                <p>Approach:
+                                    <ol>
+                                        <li>Mark 0 as X, move right to find 1</li>
+                                        <li>Mark 1 as Y, move left to find next 0</li>
+                                        <li>Repeat until all 0s and 1s are marked</li>
+                                        <li>Accept if tape contains only Xs, Ys, and blanks</li>
+                                    </ol>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visualization-panel">
+                    <h3>3D Turing Machine Visualization</h3>
+                    <div class="visualization-placeholder">
+                        <i class="fas fa-cube fa-3x"></i>
+                        <p>Interactive 3D visualization of tape movement and head operations</p>
+                        <p class="instructions">Click and drag to rotate | Scroll to zoom</p>
+                    </div>
+                    <div class="visualization-controls">
+                        <button class="control-btn"><i class="fas fa-play"></i> Simulate Execution</button>
+                        <button class="control-btn"><i class="fas fa-expand"></i> Fullscreen</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Learn Theory of Computation. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

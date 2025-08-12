@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptography - Theory of Computation</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="../index.html" style="color: white; text-decoration: none;">Learn Theory of Computation</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#chapters">Chapters</a></li>
+                    <li><a href="../index.html#learning-path">Learning Path</a></li>
+                    <li><a href="../index.html#visualizer">3D Visualizer</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="topic-content">
+        <section class="container">
+            <h1>Cryptography</h1>
+            
+            <div class="content-layout">
+                <div class="content-panel">
+                    <div class="topic-section">
+                        <h2>Relation to Theory of Computation</h2>
+                        <p>Cryptography relies heavily on computational complexity theory, which is a branch of theoretical computer science. The security of cryptographic systems is based on the assumed difficulty of certain computational problems.</p>
+                        
+                        <h3>Key Connections:</h3>
+                        <ul>
+                            <li><strong>Computational Complexity</strong>: Security relies on problems that are hard to solve</li>
+                            <li><strong>One-way Functions</strong>: Easy to compute in one direction, hard to invert</li>
+                            <li><strong>Pseudo-random Generators</strong>: Deterministic processes that produce unpredictable outputs</li>
+                            <li><strong>Zero-knowledge Proofs</strong>: Proving knowledge without revealing information</li>
+                        </ul>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Symmetric and Asymmetric Encryption</h2>
+                        
+                        <div class="crypto-types">
+                            <div class="crypto-type">
+                                <h3>Symmetric Encryption</h3>
+                                <ul>
+                                    <li>Same key used for encryption and decryption</li>
+                                    <li>Examples: AES, DES, Blowfish</li>
+                                    <li>Fast and efficient for large data</li>
+                                    <li>Key distribution is a challenge</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="crypto-type">
+                                <h3>Asymmetric Encryption</h3>
+                                <ul>
+                                    <li>Pair of keys: public key (encryption) and private key (decryption)</li>
+                                    <li>Examples: RSA, ECC, ElGamal</li>
+                                    <li>Solves key distribution problem</li>
+                                    <li>Slower than symmetric encryption</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Computational Hardness Assumptions</h2>
+                        <p>Modern cryptography is based on the assumed difficulty of mathematical problems:</p>
+                        <ul>
+                            <li><strong>Integer Factorization</strong>: Hard to factor large composite numbers (basis of RSA)</li>
+                            <li><strong>Discrete Logarithm Problem</strong>: Hard to compute discrete logarithms in certain groups</li>
+                            <li><strong>Elliptic Curve Discrete Logarithm</strong>: Hard problem on elliptic curves</li>
+                        </ul>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Real-World Analogy: Locked Mailbox</h2>
+                        <div class="analogy">
+                            <p>Think of asymmetric encryption like a locked mailbox with a public slot:</p>
+                            <ul>
+                                <li><strong>Public Key</strong>: The mail slot - anyone can insert mail (encrypt)</li>
+                                <li><strong>Private Key</strong>: The mailbox key - only the owner can open and read mail (decrypt)</li>
+                                <li><strong>Symmetric Encryption</strong>: Like having a shared key to a safety deposit box - both parties need the same key</li>
+                            </ul>
+                            <p>Just as physical locks protect physical items, cryptographic algorithms protect digital information.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Academic Problem-Solving Tips</h2>
+                        <ol>
+                            <li><strong>Understand the Problem</strong>: Identify what needs to be kept secret and from whom</li>
+                            <li><strong>Analyze Complexity</strong>: Determine the computational resources required to break the system</li>
+                            <li><strong>Prove Security</strong>: Show that breaking the cryptosystem solves a known hard problem</li>
+                            <li><strong>Consider Attacks</strong>: Think about possible attack vectors (brute force, mathematical, side-channel)</li>
+                        </ol>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Example Problems</h2>
+                        <div class="problem">
+                            <h3>Problem 1: RSA Encryption</h3>
+                            <p>Given primes p=11, q=13, and e=7, encrypt message M=5 using RSA.</p>
+                            <div class="solution">
+                                <h4>Solution:</h4>
+                                <ol>
+                                    <li>Compute n = p×q = 11×13 = 143</li>
+                                    <li>Compute φ(n) = (p-1)(q-1) = 10×12 = 120</li>
+                                    <li>Verify gcd(e, φ(n)) = gcd(7, 120) = 1</li>
+                                    <li>Compute ciphertext C = M^e mod n = 5^7 mod 143</li>
+                                    <li>5^7 = 78125 = 5×143×54 + 132, so C = 132</li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <div class="problem">
+                            <h3>Problem 2: One-time Pad</h3>
+                            <p>Explain why the one-time pad is perfectly secure but impractical.</p>
+                            <div class="solution">
+                                <h4>Solution:</h4>
+                                <p>The one-time pad is perfectly secure because:
+                                    <ul>
+                                        <li>The key is truly random and as long as the message</li>
+                                        <li>The key is never reused</li>
+                                        <li>The key is kept secret</li>
+                                    </ul>
+                                </p>
+                                <p>However, it's impractical because:
+                                    <ul>
+                                        <li>Key distribution is difficult</li>
+                                        <li>Key storage requirements are large</li>
+                                        <li>Keys cannot be reused</li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visualization-panel">
+                    <h3>3D Cryptography Visualization</h3>
+                    <div class="visualization-placeholder">
+                        <i class="fas fa-cube fa-3x"></i>
+                        <p>Interactive 3D visualization of encryption processes</p>
+                        <p class="instructions">Click and drag to rotate | Scroll to zoom</p>
+                    </div>
+                    <div class="visualization-controls">
+                        <button class="control-btn"><i class="fas fa-play"></i> Animate Encryption</button>
+                        <button class="control-btn"><i class="fas fa-expand"></i> Fullscreen</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Learn Theory of Computation. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

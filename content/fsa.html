@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finite State Automata - Theory of Computation</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="../index.html" style="color: white; text-decoration: none;">Learn Theory of Computation</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#chapters">Chapters</a></li>
+                    <li><a href="../index.html#learning-path">Learning Path</a></li>
+                    <li><a href="../index.html#visualizer">3D Visualizer</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="topic-content">
+        <section class="container">
+            <h1>Finite State Automata</h1>
+            
+            <div class="content-layout">
+                <div class="content-panel">
+                    <div class="topic-section">
+                        <h2>Definition and Formulation</h2>
+                        <p>A Finite State Automaton (FSA) is a mathematical model of computation that can be in exactly one of a finite number of states at any given time. It recognizes regular languages and is used in lexical analysis of compilers.</p>
+                        
+                        <h3>Formal Definition:</h3>
+                        <p>A finite automaton is represented as a 5-tuple (Q, Σ, δ, q₀, F) where:</p>
+                        <ul>
+                            <li><strong>Q</strong>: A finite set of states</li>
+                            <li><strong>Σ</strong>: A finite set of input symbols (alphabet)</li>
+                            <li><strong>δ</strong>: Transition function δ: Q × Σ → Q</li>
+                            <li><strong>q₀</strong>: Initial state (q₀ ∈ Q)</li>
+                            <li><strong>F</strong>: Set of final/accepting states (F ⊆ Q)</li>
+                        </ul>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Deterministic vs Non-deterministic</h2>
+                        
+                        <div class="fsa-types">
+                            <div class="fsa-type">
+                                <h3>Deterministic Finite Automata (DFA)</h3>
+                                <ul>
+                                    <li>For each state and input symbol, there is exactly one transition</li>
+                                    <li>No ε-transitions allowed</li>
+                                    <li>Easy to implement and simulate</li>
+                                    <li>Transition function: δ: Q × Σ → Q</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="fsa-type">
+                                <h3>Non-deterministic Finite Automata (NFA)</h3>
+                                <ul>
+                                    <li>For each state and input symbol, there can be zero, one, or multiple transitions</li>
+                                    <li>ε-transitions allowed</li>
+                                    <li>More flexible in design</li>
+                                    <li>Transition function: δ: Q × (Σ ∪ {ε}) → P(Q)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>When and Why to Use FSAs in Computation</h2>
+                        <ul>
+                            <li><strong>Lexical Analysis</strong>: Tokenizing source code in compilers</li>
+                            <li><strong>Pattern Matching</strong>: Regular expression engines</li>
+                            <li><strong>Protocol Design</strong>: Modeling communication protocols</li>
+                            <li><strong>Digital Circuit Design</strong>: Modeling sequential circuits</li>
+                            <li><strong>Game Development</strong>: Managing character states and behaviors</li>
+                        </ul>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Real-World Analogy: Turnstile Gates</h2>
+                        <div class="analogy">
+                            <p>A turnstile in a metro station is a perfect example of a finite state machine:</p>
+                            <ul>
+                                <li><strong>Locked State</strong>: Turnstile blocks entry, accepts coins</li>
+                                <li><strong>Unlocked State</strong>: Turnstile allows passage, blocks additional coins</li>
+                                <li><strong>Transitions</strong>: Coin input changes locked to unlocked; pushing changes unlocked to locked</li>
+                            </ul>
+                            <p>Like a turnstile, an FSA has a limited number of states and changes between them based on inputs.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Academic Problem-Solving Methods</h2>
+                        <ol>
+                            <li><strong>Design Process</strong>:
+                                <ul>
+                                    <li>Identify the states needed</li>
+                                    <li>Determine the input alphabet</li>
+                                    <li>Define transition rules</li>
+                                    <li>Specify accepting states</li>
+                                </ul>
+                            </li>
+                            <li><strong>String Acceptance</strong>: Trace through the automaton with given input</li>
+                            <li><strong>Equivalence</strong>: Convert between DFA and NFA when needed</li>
+                            <li><strong>Minimization</strong>: Reduce states to minimal form</li>
+                            <li><strong>Regular Expressions</strong>: Convert between automata and regex</li>
+                        </ol>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Example Problems</h2>
+                        <div class="problem">
+                            <h3>Problem 1: Design DFA</h3>
+                            <p>Design a DFA that accepts strings over {0,1} containing an even number of 0s.</p>
+                            <div class="solution">
+                                <h4>Solution:</h4>
+                                <p>States: q₀ (even 0s), q₁ (odd 0s)</p>
+                                <p>Transitions: 
+                                    <ul>
+                                        <li>δ(q₀, 0) = q₁</li>
+                                        <li>δ(q₀, 1) = q₀</li>
+                                        <li>δ(q₁, 0) = q₀</li>
+                                        <li>δ(q₁, 1) = q₁</li>
+                                    </ul>
+                                </p>
+                                <p>q₀ is both initial and accepting state.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visualization-panel">
+                    <h3>3D FSA Visualization</h3>
+                    <div class="visualization-placeholder">
+                        <i class="fas fa-cube fa-3x"></i>
+                        <p>Interactive 3D visualization of state transitions</p>
+                        <p class="instructions">Click and drag to rotate | Scroll to zoom</p>
+                    </div>
+                    <div class="visualization-controls">
+                        <button class="control-btn"><i class="fas fa-play"></i> Simulate Transitions</button>
+                        <button class="control-btn"><i class="fas fa-expand"></i> Fullscreen</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Learn Theory of Computation. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Theory of Computation</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Learn Theory of Computation</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#chapters">Chapters</a></li>
+                    <li><a href="#learning-path">Learning Path</a></li>
+                    <li><a href="#visualizer">3D Visualizer</a></li>
+                </ul>
+            </nav>
+            <div class="header-controls">
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </button>
+                <button id="mode-toggle" class="mode-toggle">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Switch to Real-World Mode</span>
+                </button>
+                <div class="search-container">
+                    <input type="text" id="search-bar" placeholder="Search topics...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h2>Master Theory of Computation</h2>
+                <p>Interactive learning with 3D visualizations, real-world analogies, and step-by-step problem solving</p>
+                <div class="cta-buttons">
+                    <a href="#chapters" class="btn primary">Explore Topics</a>
+                    <a href="#learning-path" class="btn secondary">Learning Path</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="chapters" class="chapters">
+            <div class="container">
+                <h2>Core Topics</h2>
+                <div class="chapters-grid">
+                    <!-- Chapter cards will be added here -->
+                    <div class="chapter-card" data-topic="language-grammar">
+                        <div class="card-header">
+                            <h3>Language and Grammar</h3>
+                            <span class="marks">8 marks</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Definition, types of grammars, Chomsky hierarchy</p>
+                            <a href="content/language-grammar.html" class="view-details">View Details</a>
+                        </div>
+                    </div>
+
+                    <div class="chapter-card" data-topic="parse-tree">
+                        <div class="card-header">
+                            <h3>Parse Tree and Derivation</h3>
+                            <span class="marks">8 marks</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Parse tree structure, derivations (leftmost/rightmost)</p>
+                            <a href="content/parse-tree.html" class="view-details">View Details</a>
+                        </div>
+                    </div>
+
+                    <div class="chapter-card" data-topic="fsa">
+                        <div class="card-header">
+                            <h3>Finite State Automata</h3>
+                            <span class="marks">16 marks</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Deterministic & non-deterministic versions</p>
+                            <a href="content/fsa.html" class="view-details">View Details</a>
+                        </div>
+                    </div>
+
+                    <div class="chapter-card" data-topic="pda">
+                        <div class="card-header">
+                            <h3>Pushdown Automata</h3>
+                            <span class="marks">16 marks</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Definition, stack operations, comparison with FSA</p>
+                            <a href="content/pda.html" class="view-details">View Details</a>
+                        </div>
+                    </div>
+
+                    <div class="chapter-card" data-topic="turing-machine">
+                        <div class="card-header">
+                            <h3>Turing Machine</h3>
+                            <span class="marks">16 marks</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Full formulation and working principles</p>
+                            <a href="content/turing-machine.html" class="view-details">View Details</a>
+                        </div>
+                    </div>
+
+                    <div class="chapter-card" data-topic="pumping-lemma">
+                        <div class="card-header">
+                            <h3>Pumping Lemma</h3>
+                            <span class="marks">8 marks</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Proving language non-regularity/context-freeness</p>
+                            <a href="content/pumping-lemma.html" class="view-details">View Details</a>
+                        </div>
+                    </div>
+
+                    <div class="chapter-card" data-topic="cryptography">
+                        <div class="card-header">
+                            <h3>Cryptography</h3>
+                            <span class="marks">8 marks</span>
+                        </div>
+                        <div class="card-content">
+                            <p>Symmetric & asymmetric encryption basics</p>
+                            <a href="content/cryptography.html" class="view-details">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="learning-path" class="learning-path">
+            <div class="container">
+                <h2>Recommended Learning Path</h2>
+                <div class="path-container">
+                    <div class="path-step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3><a href="content/language-grammar.html">Language and Grammar</a></h3>
+                            <p>Start with foundational concepts of languages and grammars</p>
+                        </div>
+                    </div>
+                    <div class="path-step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3><a href="content/parse-tree.html">Parse Tree and Derivation</a></h3>
+                            <p>Understand how languages are parsed and derived</p>
+                        </div>
+                    </div>
+                    <div class="path-step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3><a href="content/fsa.html">Finite State Automata</a></h3>
+                            <p>Learn about deterministic and non-deterministic automata</p>
+                        </div>
+                    </div>
+                    <div class="path-step" data-step="4">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3><a href="content/pda.html">Pushdown Automata</a></h3>
+                            <p>Explore stack-based computation models</p>
+                        </div>
+                    </div>
+                    <div class="path-step" data-step="5">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3><a href="content/turing-machine.html">Turing Machine</a></h3>
+                            <p>Understand the most powerful computational model</p>
+                        </div>
+                    </div>
+                    <div class="path-step" data-step="6">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h3><a href="content/pumping-lemma.html">Pumping Lemma</a></h3>
+                            <p>Learn techniques for proving language properties</p>
+                        </div>
+                    </div>
+                    <div class="path-step" data-step="7">
+                        <div class="step-number">7</div>
+                        <div class="step-content">
+                            <h3><a href="content/cryptography.html">Cryptography</a></h3>
+                            <p>Explore applications in computational security</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="visualizer" class="visualizer">
+            <div class="container">
+                <h2>3D Interactive Visualizer</h2>
+                <div class="split-screen">
+                    <div class="content-panel">
+                        <h3>Select a topic to visualize</h3>
+                        <p>Choose a topic from the chapters above to see its interactive 3D visualization</p>
+                        <div class="visualization-info">
+                            <h4>Visualization Features:</h4>
+                            <ul>
+                                <li><i class="fas fa-sync"></i> Rotatable 3D models</li>
+                                <li><i class="fas fa-mouse-pointer"></i> Clickable elements with explanations</li>
+                                <li><i class="fas fa-play-circle"></i> Animated simulations</li>
+                                <li><i class="fas fa-expand"></i> Full-screen mode</li>
+                            </ul>
+                        </div>
+                        <div class="visualization-controls-main">
+                            <button id="animate-btn" class="control-btn"><i class="fas fa-play"></i> Animate</button>
+                            <button id="reset-view-btn" class="control-btn"><i class="fas fa-redo"></i> Reset View</button>
+                        </div>
+                    </div>
+                    <div class="visualization-container">
+                        <div class="visualization-panel" id="visualization-container">
+                            <div class="placeholder" id="visualization-placeholder">
+                                <i class="fas fa-cube"></i>
+                                <p>3D Visualization Area</p>
+                                <p>Select a topic to begin</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Learn Theory of Computation. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+    
+    <!-- Main Scripts -->
+    <script src="js/visualizations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

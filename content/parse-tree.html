@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parse Tree and Derivation - Theory of Computation</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="../index.html" style="color: white; text-decoration: none;">Learn Theory of Computation</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#chapters">Chapters</a></li>
+                    <li><a href="../index.html#learning-path">Learning Path</a></li>
+                    <li><a href="../index.html#visualizer">3D Visualizer</a></li>
+                </ul>
+            </nav>
+            <div class="header-controls">
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="topic-content">
+        <section class="container">
+            <h1>Parse Tree and Derivation</h1>
+            
+            <div class="content-layout">
+                <div class="content-panel">
+                    <div class="topic-section">
+                        <h2>What are Parse Trees and Derivations?</h2>
+                        <p>A <strong>derivation</strong> is the sequence of production rule applications that generate a string from a grammar's start symbol.</p>
+                        
+                        <p>A <strong>parse tree</strong> (or syntax tree) is a graphical representation of how a string is derived from the grammar, showing the hierarchical structure.</p>
+                        
+                        <div class="analogy">
+                            <h3>Family Tree Analogy</h3>
+                            <p>A parse tree is like a family tree:</p>
+                            <ul>
+                                <li><strong>Root</strong> = Ancestor (start symbol)</li>
+                                <li><strong>Internal nodes</strong> = Parents (non-terminals)</li>
+                                <li><strong>Leaves</strong> = Children (terminals)</li>
+                                <li><strong>Branches</strong> = Family relationships (production rules)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Types of Derivations</h2>
+                        
+                        <div class="derivation-types">
+                            <div class="derivation-type">
+                                <h3>Leftmost Derivation</h3>
+                                <p>In each step, the leftmost non-terminal is replaced.</p>
+                                <p>Notation: ⇒ₗₘ</p>
+                            </div>
+                            
+                            <div class="derivation-type">
+                                <h3>Rightmost Derivation</h3>
+                                <p>In each step, the rightmost non-terminal is replaced.</p>
+                                <p>Notation: ⇒ᵣₘ</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Example Grammar:</h3>
+                        <p>E → E + T | T</p>
+                        <p>T → T * F | F</p>
+                        <p>F → (E) | id</p>
+                        
+                        <h3>String to derive: id + id * id</h3>
+                        
+                        <h4>Leftmost Derivation:</h4>
+                        <pre>
+E ⇒ E + T
+  ⇒ T + T
+  ⇒ F + T
+  ⇒ id + T
+  ⇒ id + T * F
+  ⇒ id + F * F
+  ⇒ id + id * F
+  ⇒ id + id * id
+                        </pre>
+                        
+                        <h4>Rightmost Derivation:</h4>
+                        <pre>
+E ⇒ E + T
+  ⇒ E + T * F
+  ⇒ E + T * id
+  ⇒ E + F * id
+  ⇒ E + id * id
+  ⇒ T + id * id
+  ⇒ F + id * id
+  ⇒ id + id * id
+                        </pre>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Parse Tree Construction</h2>
+                        <p>Both derivations produce the same parse tree, but the order of node creation differs.</p>
+                        
+                        <div class="problem">
+                            <h3>Key Properties:</h3>
+                            <ul>
+                                <li>The yield of a parse tree (leaves read left to right) is the derived string</li>
+                                <li>Each internal node represents a production application</li>
+                                <li>Children of a node represent the right-hand side of a production</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Ambiguity in Grammars</h2>
+                        <p>A grammar is ambiguous if there exists a string with two different parse trees.</p>
+                        
+                        <div class="problem">
+                            <h3>Example of Ambiguous Grammar:</h3>
+                            <p>E → E + E | E * E | id</p>
+                            <p>String: id + id * id</p>
+                            <p>This string has two different parse trees, depending on whether we group as (id + id) * id or id + (id * id).</p>
+                        </div>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Real-World Applications</h2>
+                        <ul>
+                            <li><strong>Compilers:</strong> Parsing source code to build Abstract Syntax Trees (ASTs)</li>
+                            <li><strong>Document processing:</strong> XML/HTML parsers build DOM trees (a type of parse tree)</li>
+                            <li><strong>Mathematical expressions:</strong> Evaluating expressions with nested parentheses</li>
+                            <li><strong>File systems:</strong> Validating directory structures</li>
+                            <li><strong>Network protocols:</strong> Handling nested message formats</li>
+                        </ul>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Academic Problem-Solving Tips</h2>
+                        <ol>
+                            <li><strong>Identify the grammar and target string</strong></li>
+                            <li><strong>Choose a derivation strategy</strong> (usually leftmost or rightmost as specified)</li>
+                            <li><strong>Apply rules step by step</strong>, showing each intermediate string</li>
+                            <li><strong>Construct the parse tree</strong> from the derivation</li>
+                            <li><strong>Check for ambiguity</strong> if asked</li>
+                        </ol>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Example Problem</h2>
+                        <div class="problem">
+                            <h3>Problem:</h3>
+                            <p>Show that the grammar E → E + E | E * E | (E) | id is ambiguous for "id + id * id"</p>
+                            <div class="solution">
+                                <h4>Solution:</h4>
+                                <p>Construct two different parse trees that both yield "id + id * id".</p>
+                                <p>One groups as (id + id) * id and the other as id + (id * id).</p>
+                                <p>Since two different parse trees exist for the same string, the grammar is ambiguous.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visualization-panel" id="visualization-container">
+                    <h3>3D Parse Tree Visualization</h3>
+                    <div class="visualization-placeholder" id="visualization-placeholder">
+                        <i class="fas fa-cube fa-3x"></i>
+                        <p>Interactive 3D visualization of parse tree</p>
+                        <p class="instructions">Click and drag to rotate | Scroll to zoom</p>
+                    </div>
+                    <div class="visualization-controls">
+                        <button class="control-btn" id="animate-btn"><i class="fas fa-play"></i> Animate Tree</button>
+                        <button class="control-btn" id="reset-view-btn"><i class="fas fa-redo"></i> Reset View</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Learn Theory of Computation. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+    
+    <!-- Visualization Script -->
+    <script src="../js/visualizations.js"></script>
+    <script>
+        // Initialize 3D visualization when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const visualizationContainer = document.getElementById('visualization-container');
+            const visualizationPlaceholder = document.getElementById('visualization-placeholder');
+            const animateBtn = document.getElementById('animate-btn');
+            const resetViewBtn = document.getElementById('reset-view-btn');
+            const themeToggle = document.getElementById('theme-toggle');
+            
+            // Theme toggle functionality
+            let currentTheme = 'light';
+            
+            // Check for saved theme preference or respect OS preference
+            const savedTheme = localStorage.getItem('toc-theme');
+            const osPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme) {
+                currentTheme = savedTheme;
+            } else if (osPrefersDark) {
+                currentTheme = 'dark';
+            }
+            
+            // Apply theme
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            updateThemeToggle();
+            
+            // Toggle theme
+            themeToggle.addEventListener('click', function() {
+                currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', currentTheme);
+                localStorage.setItem('toc-theme', currentTheme);
+                updateThemeToggle();
+                
+                // Add visual feedback
+                themeToggle.classList.add('active');
+                setTimeout(() => {
+                    themeToggle.classList.remove('active');
+                }, 300);
+                
+                // Show notification
+                const themeText = currentTheme === 'light' ? 'Light' : 'Dark';
+                showNotification(`${themeText} mode activated`);
+            });
+            
+            // Function to update theme toggle button
+            function updateThemeToggle() {
+                const themeIcon = currentTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+                const themeText = currentTheme === 'light' ? 'Dark Mode' : 'Light Mode';
+                themeToggle.innerHTML = `<i class="${themeIcon}"></i> <span>${themeText}</span>`;
+            }
+            
+            let visualizer = null;
+            
+            // Initialize visualizer if container exists
+            if (visualizationContainer) {
+                // Wait a bit for Three.js to load
+                setTimeout(() => {
+                    if (typeof TOCVisualizer !== 'undefined') {
+                        // Hide placeholder
+                        if (visualizationPlaceholder) {
+                            visualizationPlaceholder.style.display = 'none';
+                        }
+                        
+                        // Initialize visualizer
+                        visualizer = new TOCVisualizer(visualizationContainer);
+                        
+                        // Load parse tree visualization
+                        visualizer.loadVisualization('parse-tree');
+                        
+                        // Setup controls
+                        if (animateBtn) {
+                            animateBtn.addEventListener('click', function() {
+                                if (visualizer) {
+                                    // Animate the visualization
+                                    showNotification('Animating Parse Tree');
+                                    
+                                    // Rotate camera around the scene
+                                    if (visualizer.camera) {
+                                        const originalX = visualizer.camera.position.x;
+                                        let angle = 0;
+                                        const rotateAnimation = () => {
+                                            angle += 0.05;
+                                            visualizer.camera.position.x = originalX + Math.sin(angle) * 3;
+                                            visualizer.camera.position.z = Math.cos(angle) * 3;
+                                            visualizer.camera.lookAt(0, 0, 0);
+                                            if (angle < Math.PI * 2) {
+                                                requestAnimationFrame(rotateAnimation);
+                                            }
+                                        };
+                                        rotateAnimation();
+                                    }
+                                } else {
+                                    showNotification('Visualization not available');
+                                }
+                            });
+                        }
+                        
+                        if (resetViewBtn) {
+                            resetViewBtn.addEventListener('click', function() {
+                                if (visualizer) {
+                                    // Reset camera position
+                                    if (visualizer.camera) {
+                                        visualizer.camera.position.set(0, 0, 10);
+                                        visualizer.camera.lookAt(0, 0, 0);
+                                    }
+                                    // Reset controls
+                                    if (visualizer.controls) {
+                                        visualizer.controls.reset();
+                                    }
+                                    showNotification('View reset');
+                                }
+                            });
+                        }
+                    }
+                }, 100);
+            }
+            
+            // Notification system
+            function showNotification(message) {
+                const notification = document.createElement('div');
+                notification.className = 'viz-notification';
+                notification.textContent = message;
+                notification.style.cssText = `
+                    position: absolute;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: rgba(255, 255, 255, 0.9);
+                    color: #0a0a1a;
+                    padding: 10px 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+                    z-index: 100;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                    pointer-events: none;
+                `;
+                
+                visualizationContainer.appendChild(notification);
+                
+                // Animate in
+                setTimeout(() => {
+                    notification.style.opacity = '1';
+                }, 100);
+                
+                // Remove after delay
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.parentNode.removeChild(notification);
+                        }
+                    }, 300);
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>

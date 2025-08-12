@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pumping Lemma - Theory of Computation</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><a href="../index.html" style="color: white; text-decoration: none;">Learn Theory of Computation</a></h1>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../index.html#chapters">Chapters</a></li>
+                    <li><a href="../index.html#learning-path">Learning Path</a></li>
+                    <li><a href="../index.html#visualizer">3D Visualizer</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="topic-content">
+        <section class="container">
+            <h1>Pumping Lemma</h1>
+            
+            <div class="content-layout">
+                <div class="content-panel">
+                    <div class="topic-section">
+                        <h2>Concept and Purpose</h2>
+                        <p>The Pumping Lemma is a tool used to prove that certain languages are not regular (or not context-free). It's based on the pigeonhole principle and the finite nature of automata.</p>
+                        
+                        <h3>Key Idea:</h3>
+                        <p>In a finite automaton with n states, any string of length ≥ n must visit some state more than once, creating a "loop" that can be "pumped" (repeated) any number of times.</p>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Pumping Lemma for Regular Languages</h2>
+                        <p>If A is a regular language, then there exists a number p (pumping length) such that for any string s in A with |s| ≥ p, s can be divided into three pieces s = xyz satisfying:</p>
+                        <ol>
+                            <li>For each i ≥ 0, xy^i z ∈ A</li>
+                            <li>|y| > 0</li>
+                            <li>|xy| ≤ p</li>
+                        </ol>
+                        
+                        <h3>Proof Strategy:</h3>
+                        <p>To prove a language is not regular:</p>
+                        <ol>
+                            <li>Assume the language is regular</li>
+                            <li>Let p be the pumping length</li>
+                            <li>Choose a specific string s in the language with |s| ≥ p</li>
+                            <li>Show that no valid division s = xyz exists that satisfies all conditions</li>
+                            <li>Conclude the language is not regular</li>
+                        </ol>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Pumping Lemma for Context-Free Languages</h2>
+                        <p>If A is a context-free language, then there exists a number p such that for any string s in A with |s| ≥ p, s can be divided into five pieces s = uvxyz satisfying:</p>
+                        <ol>
+                            <li>For each i ≥ 0, uv^i xy^i z ∈ A</li>
+                            <li>|vy| > 0</li>
+                            <li>|vxy| ≤ p</li>
+                        </ol>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Real-World Analogy: Stretching a String</h2>
+                        <div class="analogy">
+                            <p>Think of the pumping lemma like stretching a string of beads without breaking it:</p>
+                            <ul>
+                                <li><strong>String of Beads</strong>: Represents the input string in the language</li>
+                                <li><strong>Repeated Pattern</strong>: The "pumpable" section that can be repeated (like a stretchy section)</li>
+                                <li><strong>Stretching</strong>: Repeating the pattern any number of times (including zero)</li>
+                                <li><strong>Still a Valid String</strong>: The resulting string must still belong to the language</li>
+                            </ul>
+                            <p>If you can't stretch any part of the bead string while keeping it valid for the language, then the language might not be regular or context-free.</p>
+                        </div>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Using Pumping Lemma to Prove Non-regularity</h2>
+                        <p>Common techniques:</p>
+                        <ul>
+                            <li><strong>Choose s wisely</strong>: Pick a string that makes the proof straightforward</li>
+                            <li><strong>Case analysis</strong>: Consider all possible divisions of s = xyz</li>
+                            <li><strong>Contradiction</strong>: Show that pumping leads to strings not in the language</li>
+                        </ul>
+                    </div>
+
+                    <div class="topic-section">
+                        <h2>Example Proofs</h2>
+                        <div class="problem">
+                            <h3>Example 1: Prove L = {0^n 1^n | n ≥ 0} is not regular</h3>
+                            <div class="solution">
+                                <h4>Proof:</h4>
+                                <ol>
+                                    <li>Assume L is regular and let p be the pumping length</li>
+                                    <li>Choose s = 0^p 1^p (clearly in L and |s| = 2p ≥ p)</li>
+                                    <li>By pumping lemma, s = xyz where |xy| ≤ p and |y| > 0</li>
+                                    <li>Since |xy| ≤ p, y consists only of 0s</li>
+                                    <li>Consider xy^2 z = xyyz - this string has more 0s than 1s</li>
+                                    <li>Therefore xy^2 z ∉ L, contradicting the pumping lemma</li>
+                                    <li>Hence L is not regular</li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <div class="problem">
+                            <h3>Example 2: Prove L = {ww | w ∈ {0,1}*} is not context-free</h3>
+                            <div class="solution">
+                                <h4>Proof:</h4>
+                                <p>Using the pumping lemma for context-free languages, we can similarly show that this language cannot be pumped while maintaining its structure.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="visualization-panel">
+                    <h3>3D Pumping Lemma Visualization</h3>
+                    <div class="visualization-placeholder">
+                        <i class="fas fa-cube fa-3x"></i>
+                        <p>Interactive 3D visualization of string pumping process</p>
+                        <p class="instructions">Click and drag to rotate | Scroll to zoom</p>
+                    </div>
+                    <div class="visualization-controls">
+                        <button class="control-btn"><i class="fas fa-play"></i> Animate Pumping</button>
+                        <button class="control-btn"><i class="fas fa-expand"></i> Fullscreen</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Learn Theory of Computation. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
